@@ -20,7 +20,7 @@ All services run entirely within Docker containers.
 1. Clone the repository:
 
    ```bash
-   git clone <url>
+   git clone git@gitlab.eclipse.org:eclipse/autowrx/instance-setup.git playground
    ```
 
 2. Navigate to the project folder:

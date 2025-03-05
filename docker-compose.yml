@@ -1,7 +1,7 @@
 services:
   playground-fe:
     container_name: playground-fe
-    image: boschvn/playground-fe
+    image: boschvn/playground-fe:latest
     ports:
       - "${CLIENT_PORT:-3000}:80"
     volumes:
@@ -32,7 +32,7 @@ services:
   playground-be:
     platform: linux/amd64
     container_name: playground-be
-    image: boschvn/playground-be:fdc937c
+    image: boschvn/playground-be:latest
     env_file:
       - .env
     depends_on:
@@ -55,7 +55,7 @@ services:
   upload:
     platform: linux/amd64
     container_name: playground-upload
-    image: boschvn/upload:1b88570
+    image: boschvn/upload:latest
     env_file:
       - .env
     volumes:

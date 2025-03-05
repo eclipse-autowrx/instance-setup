@@ -13,7 +13,7 @@ All services run entirely within Docker containers.
 
 ![Architecture](https://bewebstudio.digitalauto.tech/data/projects/nTcRsgxcDWgr/instance_setup/Architecture.jpg)
 
-## Installation
+## Running the application
 
 ### Using Docker
 

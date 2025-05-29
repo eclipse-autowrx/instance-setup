@@ -1,5 +1,5 @@
 # Copyright (c) 2025 Robert Bosch GmbH.
-# 
+#
 # This program and the accompanying materials are made available under the
 # terms of the MIT License which is available at
 # https://opensource.org/licenses/MIT.
@@ -15,25 +15,24 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
     restart: always
+    depends_on:
+      - kong
+    networks:
+      - node-network
 
   kong:
     platform: linux/amd64
-    image: kong:3.7.1-ubuntu
-    container_name: playground-kong
+    image: boschvn/playground-kong:latest
+    container_name: kong
     environment:
       KONG_ADMIN_ACCESS_LOG: /dev/stdout
       KONG_ADMIN_ERROR_LOG: /dev/stderr
       KONG_PROXY_ACCESS_LOG: /dev/stdout
       KONG_PROXY_ERROR_LOG: /dev/stderr
-      KONG_DATABASE: "off"
-      KONG_DECLARATIVE_CONFIG: /kong/declarative/kong.yml
-    ports:
-      - "${KONG_PROXY_PORT}:8000"
+      KONG_NGINX_WORKER_PROCESSES: 2
     restart: ${RESTART_POLICY:-always}
     networks:
       - node-network
-    volumes:
-      - "./:/kong/declarative/"
     depends_on:
       - playground-be
 
@@ -67,15 +66,49 @@ services:
     env_file:
       - .env
     volumes:
-      - '${UPLOAD_PATH}:/usr/src/upload/data'
+      - "${UPLOAD_PATH}:/usr/src/upload/data"
     networks:
       - node-network
     restart: ${RESTART_POLICY:-always}
     command: npm run prod
 
+  inventory-fe:
+    platform: linux/amd64
+    container_name: inventory-fe
+    image: boschvn/inventory-fe:latest
+    restart: ${RESTART_POLICY:-always}
+    ports:
+      - 3001:80
+    networks:
+      - node-network
+
+  inventory-be:
+    platform: linux/amd64
+    container_name: inventory-be
+    image: boschvn/inventory-be:latest
+    environment:
+      - NODE_ENV=${NODE_ENV:-production}
+      - MONGODB_URL=mongodb://inventory-db:27017/inventory
+      - AUTHORIZATION_URL=http://playground-be:8080/v2/auth/authorize
+    restart: ${RESTART_POLICY:-always}
+    depends_on:
+      - inventory-db
+    networks:
+      - node-network
+    command: yarn start
+
+  inventory-db:
+    container_name: inventory-db
+    image: mongo:4.4.6-bionic
+    volumes:
+      - inventorydata:/data/db
+    networks:
+      - node-network
+    restart: ${RESTART_POLICY:-always}
+
 volumes:
   dbdata:
-
+  inventorydata:
 
 networks:
   node-network:

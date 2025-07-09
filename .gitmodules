@@ -1,0 +1,9 @@
+[submodule "autowrx"]
+	path = autowrx
+	url = https://github.com/eclipse-autowrx/autowrx
+[submodule "backend-core"]
+	path = backend-core
+	url = https://github.com/eclipse-autowrx/backend-core
+[submodule "inventory"]
+	path = inventory
+	url = https://github.com/eclipse-autowrx/inventory

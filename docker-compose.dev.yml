@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  playground-fe:
+    build:
+      context: autowrx
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./autowrx:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    ports:
+      - 3000:3000
+
+  inventory-fe:
+    build:
+      context: inventory/frontend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./inventory/frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+
+  playground-be:
+    volumes:
+      - ./backend-core:/usr/src/playground-be
+      - /usr/src/playground-be/node_modules
+    ports:
+      - "8080:8080"
+
+  inventory-be:
+    volumes:
+      - ./inventory/backend:/app
+      - /app/node_modules
+    ports:
+      - "8081:8080"
+
+  playground-db:
+    ports:
+      - "27017:27017"
+
+  inventory-db:
+    ports:
+      - "27018:27017"

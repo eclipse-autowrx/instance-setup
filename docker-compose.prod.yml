@@ -1,0 +1,8 @@
+version: "3.8"
+
+services:
+  playground-fe:
+    ports:
+      - "${PLAYGROUND_FE_CLIENT_PORT:-3000}:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf

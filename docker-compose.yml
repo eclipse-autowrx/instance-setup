@@ -8,12 +8,11 @@
 
 services:
   playground-fe:
+    platform: linux/amd64
     container_name: playground-fe
     build:
       context: autowrx
     image: boschvn/playground-fe:local-latest
-    ports:
-      - "${PLAYGROUND_FE_CLIENT_PORT:-3000}:80"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
     restart: ${SHARED_RESTART_POLICY:-always}

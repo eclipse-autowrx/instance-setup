@@ -46,7 +46,7 @@ Before setting up your playground instance, ensure you have the following instal
 | Component | Minimum                  | Recommended |
 | --------- | ------------------------ | ----------- |
 | CPU       | 2 cores                  | 4 cores     |
-| RAM       | 4 GiB                    | 8 GiB       |
+| RAM       | 3 GiB                    | 4 GiB       |
 | Disk      | 10 GiB                   | 20 GiB      |
 | OS        | Any Docker-compatible OS | Linux/macOS |
 

@@ -20,6 +20,8 @@ services:
       - kong
     networks:
       - node-network
+    ports:
+      - "${PLAYGROUND_FE_CLIENT_PORT:-3000}:80"
 
   kong:
     platform: linux/amd64

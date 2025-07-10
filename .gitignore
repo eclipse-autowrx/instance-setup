@@ -14,7 +14,7 @@ coverage
 # Local Netlify folder
 .netlify
 
-
+data
 
 data/clock.txt
 

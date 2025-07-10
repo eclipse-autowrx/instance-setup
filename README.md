@@ -57,9 +57,6 @@ Before setting up your playground instance, ensure you have the following instal
    ```bash
    git clone https://github.com/eclipse-autowrx/instance-setup playground
    cd playground
-
-   # Optional in case you need local development
-   git submodule update --init --remote --recursive
    ```
 
 2. Initialize Submodules (Optional for Development):

@@ -8,7 +8,7 @@ The playground consists of some primary components:
 
 - **Frontend**: [autowrx repo](https://github.com/eclipse-autowrx/autowrx): Frontend application built with Vite and React
 - **Backend**: [backend-core repo](https://github.com/eclipse-autowrx/backend-core): Backend services built with Node.js, Express, and MongoDB
-- **Inventory** [inventory repo](https://github.com/eclipse-autowrx/inventory): Schema and instance data management system
+- **Inventory**: [inventory repo](https://github.com/eclipse-autowrx/inventory): Schema and instance data management system
 
 The entire platform is containerized using Docker, making it easy to deploy and develop across different environments.
 

@@ -8,7 +8,7 @@ The playground consists of some primary components:
 
 - **Frontend**: [autowrx repo](https://github.com/eclipse-autowrx/autowrx): Frontend application built with Vite and React
 - **Backend**: [backend-core repo](https://github.com/eclipse-autowrx/backend-core): Backend services built with Node.js, Express, and MongoDB
-- **Inventory** ([inventory repo](https://github.com/eclipse-autowrx/inventory)): Schema and instance data management system
+- **Inventory** [inventory repo](https://github.com/eclipse-autowrx/inventory): Schema and instance data management system
 
 The entire platform is containerized using Docker, making it easy to deploy and develop across different environments.
 
@@ -50,6 +50,8 @@ Before setting up your playground instance, ensure you have the following instal
 | Disk      | 10 GiB                   | 20 GiB      |
 | OS        | Any Docker-compatible OS | Linux/macOS |
 
+> Memory Usage Note: The `KONG_SVC_NGINX_WORKER_PROCESSES` variable defaults to `auto`, which creates worker processes based on your CPU cores. This will consume memory proportional to your system specifications. If you're working with limited memory, you can reduce this by setting it to a specific number (e.g., 1 or 2) in your .env file.
+
 ## Setup Instructions
 
 1. Clone the repository:
@@ -67,23 +69,44 @@ Before setting up your playground instance, ensure you have the following instal
    git submodule update --init --remote --recursive
    ```
 
-3. Set up environment variables:
+### Development Environment Setup
+
+3. Set up environment variables for development:
 
    Create `.env` file from `.env.example` template:
 
    ```bash
-       cp .env.example .env
+   cp .env.example .env
    ```
 
-4. Start the Platform:
+   The default values in `.env.example` are suitable for development environments.
 
-   #### Development Mode
+4. Start the Development Platform:
 
    ```bash
    docker compose -f docker-compose.yml -f docker-compose.dev.yml up
    ```
 
-   #### Production Mode
+### Production Environment Setup
+
+3. Set up environment variables for production:
+
+   Create `.env` file from `.env.example` template:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   **⚠️ Important Production Configuration:**
+
+   Before starting the production environment, you must edit the `.env` file and update the following variables:
+
+   - **`JWT_COOKIE_DOMAIN`**: Set this to match your production domain (e.g., `yourdomain.com`). Important: Use only the domain name without the protocol scheme (❌ invalid: `https://yourdomain.com`, ✅ valid: `yourdomain.com`)
+   - **`NODE_ENV`**: Set to `production`
+   - **Security variables**: Update any default passwords, secrets, or API keys
+   - (Optional) Database configuration: Configure production database settings if using external databases
+
+4. Start the Production Platform:
 
    ```bash
    docker compose up -d

@@ -101,7 +101,11 @@ Before setting up your playground instance, ensure you have the following instal
 
    Before starting the production environment, you must edit the `.env` file and update the following variables:
 
-   - **`JWT_COOKIE_DOMAIN`**: Set this to match your production domain (e.g., `yourdomain.com`). Important: Use only the domain name without the protocol scheme (❌ invalid: `https://yourdomain.com`, ✅ valid: `yourdomain.com`)
+   - **`JWT_COOKIE_DOMAIN`**: Set this to match your production domain.
+     - Example: `yourdomain.com`
+     - **Important**: Use only the domain name without the protocol scheme.
+       - ❌ Invalid: `https://yourdomain.com`
+       - ✅ Valid: `yourdomain.com`
    - **`NODE_ENV`**: Set to `production`
    - **Security variables**: Update any default passwords, secrets, or API keys
    - (Optional) Database configuration: Configure production database settings if using external databases

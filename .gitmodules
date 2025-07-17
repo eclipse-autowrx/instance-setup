@@ -7,3 +7,6 @@
 [submodule "inventory"]
 	path = inventory
 	url = https://github.com/eclipse-autowrx/inventory
+[submodule "playground-kong"]
+	path = playground-kong
+	url = https://github.com/nhan-orgs/playground-kong.git

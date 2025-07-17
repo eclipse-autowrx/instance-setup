@@ -2,8 +2,6 @@ version: "3.8"
 
 services:
   kong:
-    build:
-      context: backend-core/kong
     ports:
       - 8000:8000
 

@@ -153,11 +153,11 @@ if [ $? -eq 0 ]; then
     echo "Access URLs:"
     echo "  Main Application:     http://localhost:3000"
     echo "  Inventory Management: http://localhost:3001"
-    echo "  API Documentation:    http://localhost:3000/api/v2/inventory/docs"
     echo "  Backend API:          http://localhost:3000/api/v2"
     
     if [ "$MODE" = "dev" ]; then
         echo "  Frontend Dev Server:  http://localhost:3002"
+        echo "  API Documentation:    http://localhost:3000/api/v2/inventory/docs"
     fi
     
     echo ""

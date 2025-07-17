@@ -9,6 +9,7 @@ The playground consists of some primary components:
 - **Frontend**: [autowrx repo](https://github.com/eclipse-autowrx/autowrx): Frontend application built with Vite and React
 - **Backend**: [backend-core repo](https://github.com/eclipse-autowrx/backend-core): Backend services built with Node.js, Express, and MongoDB
 - **Inventory**: [inventory repo](https://github.com/eclipse-autowrx/inventory): Schema and instance data management system
+- **API Gateway**: [playground-kong repo](https://github.com/eclipse-autowrx/playground-kong): Kong-based API gateway for request routing and management
 
 The entire platform is containerized using Docker, making it easy to deploy and develop across different environments.
 
@@ -21,6 +22,7 @@ The entire platform is containerized using Docker, making it easy to deploy and 
 ├── autowrx/                  # Frontend application
 ├── backend-core/             # Core backend services
 ├── inventory/                # Schema and instance management
+├── playground-kong/          # Kong API gateway configuration
 ├── docker-compose.yml        # Base Docker Compose configuration
 ├── docker-compose.dev.yml    # Development environment configuration
 ├── docker-compose.prod.yml   # Production environment configuration

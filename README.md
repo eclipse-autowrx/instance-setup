@@ -84,7 +84,7 @@ Before setting up your playground instance, ensure you have the following instal
 4. Start the Development Platform:
 
    ```bash
-   docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+   ./start.sh
    ```
 
 ### Production Environment Setup
@@ -113,8 +113,17 @@ Before setting up your playground instance, ensure you have the following instal
 4. Start the Production Platform:
 
    ```bash
-   docker compose up -d
+   ./start.sh -prod -d
    ```
+
+### Start Script Options
+
+| Option  | Description                       |
+| ------- | --------------------------------- |
+| `-prod` | Start in production mode          |
+| `-d`    | Run in detached mode (background) |
+| `-b`    | Force rebuild of Docker images    |
+| `-h`    | Show help message                 |
 
 ## Accessing Your Platform
 

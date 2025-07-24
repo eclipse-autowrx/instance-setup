@@ -13,7 +13,7 @@ The playground consists of some primary components:
 
 The entire platform is containerized using Docker, making it easy to deploy and develop across different environments.
 
-![Architecture](https://bewebstudio.digitalauto.tech/data/projects/nTcRsgxcDWgr/instance_setup/Architecture.jpg)
+![Architecture](https://bewebstudio.digitalauto.tech/data/projects/nTcRsgxcDWgr/Architecture/Architecture-docker-compose.jpg)
 
 ## Project Structure
 

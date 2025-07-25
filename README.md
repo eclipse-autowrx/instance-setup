@@ -127,6 +127,34 @@ Before setting up your playground instance, ensure you have the following instal
 | `-b`    | Force rebuild of Docker images    |
 | `-h`    | Show help message                 |
 
+## Environment Variables and Docker Images
+
+### ⚠️ Important: Frontend Environment Variables
+
+**Frontend environment variables are embedded into the Docker image at build time.** This means:
+
+- Environment variables for the frontend service are **baked into the image** during the Docker build process
+- If you modify any frontend-related environment variables in your `.env` file after the initial setup, you **must rebuild the Docker image** for changes to take effect
+
+**To apply frontend environment variable changes:**
+
+```bash
+# Stop the current containers
+docker compose down
+
+# Rebuild with the updated environment variables
+./start.sh -b
+```
+
+**Examples of frontend environment variables that require rebuilding:**
+- API endpoint URLs
+- Feature flags
+- Build-time configuration variables
+- Any variables prefixed with `VITE_` or `REACT_APP_`
+
+**Backend environment variables** are loaded at runtime and do not require image rebuilding.
+
+
 ## Accessing Your Platform
 
 Once the containers are running, you can access:

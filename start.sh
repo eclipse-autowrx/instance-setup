@@ -122,10 +122,10 @@ if [ "$MODE" = "dev" ]; then
 fi
 
 # Build Docker compose command
-DOCKER_CMD="docker compose -f docker-compose.yml"
+DOCKER_CMD="docker compose -f ./docker-compose.yml"
 
 if [ "$MODE" = "dev" ]; then
-    DOCKER_CMD="$DOCKER_CMD -f docker-compose.dev.yml"
+    DOCKER_CMD="$DOCKER_CMD -f ./docker-compose.dev.yml"
 fi
 
 DOCKER_CMD="$DOCKER_CMD up"

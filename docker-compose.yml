@@ -12,7 +12,7 @@ services:
     container_name: playground-fe
     build:
       context: autowrx
-    image: boschvn/playground-fe:local-latest
+    image: boschvn/playground-fe:uaes-latest
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
     restart: ${SHARED_RESTART_POLICY:-always}
@@ -42,7 +42,6 @@ services:
       - node-network
     depends_on:
       - playground-be
-      - inventory-be
 
   playground-be:
     platform: linux/amd64
@@ -69,7 +68,6 @@ services:
       - ADMIN_EMAILS=${PLAYGROUND_BE_ADMIN_EMAILS}
       - ADMIN_PASSWORD=${PLAYGROUND_BE_ADMIN_PASSWORD}
     depends_on:
-      - inventory-be
       - playground-db
       - upload
     networks:
@@ -103,43 +101,14 @@ services:
     restart: ${SHARED_RESTART_POLICY:-always}
     command: npm run prod
 
-  inventory-fe:
-    platform: linux/amd64
-    container_name: inventory-fe
-    build:
-      context: inventory/frontend
-    image: boschvn/inventory-fe:latest
+  runtime:
+    container_name: runtime
+    image: ghcr.io/eclipse-autowrx/sdv-runtime:latest
     environment:
-      - NEXT_PUBLIC_SERVER_BASE_URL=${INVENTORY_FE_SERVER_BASE_URL}
-      - SESSION_JWT_SECRET=${INVENTORY_FE_SESSION_JWT_SECRET}
-    restart: ${SHARED_RESTART_POLICY:-always}
+      - RUNTIME_NAME=USP
+      - SYNCER_SERVER_URL=http://localhost:3090
     ports:
-      - "${INVENTORY_FE_PORT}:3000"
-    networks:
-      - node-network
-
-  inventory-be:
-    platform: linux/amd64
-    container_name: inventory-be
-    build:
-      context: inventory/backend
-    image: boschvn/inventory-be:latest
-    environment:
-      - NODE_ENV=${SHARED_NODE_ENV:-development}
-      - MONGODB_URL=${INVENTORY_BE_MONGODB_URL}
-      - AUTHORIZATION_URL=${INVENTORY_BE_AUTHORIZATION_URL}
-    restart: ${SHARED_RESTART_POLICY:-always}
-    depends_on:
-      - inventory-db
-    networks:
-      - node-network
-    command: yarn start
-
-  inventory-db:
-    container_name: inventory-db
-    image: mongo:4.4.6-bionic
-    volumes:
-      - inventorydata:/data/db
+      - "3090:3090"
     networks:
       - node-network
     restart: ${SHARED_RESTART_POLICY:-always}
@@ -147,7 +116,6 @@ services:
 volumes:
   dbdata:
   inventorydata:
-
 networks:
   node-network:
     driver: bridge
